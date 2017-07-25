@@ -106,18 +106,64 @@
             </div>
         </nav>
 
-        <header id="neutral" class="dark1 center" style="background-image:url(img/vc-meeting.jpg);"
-            data-overlay="8">
+        <section class="dark2">
+            <div class="container" style="padding-top:100px;">
+                <div class="row">
+                    <div class="col-md-6" style="margin-top: 50px; margin-bottom: 50px;">
+                        <h1>The Internet’s Own VC Fund</h1>
+                        <h6>Now you can get VC-grade Returns On Your ETH</h6>
+                        <a href="whitepaper.pdf" class="btn color-fix"><span><i class="ion-document"></i> &nbsp; Read the White paper</span></a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="tokensale">
+                            <h1 class="center">Tokensale now live</h1>
+                            <div class="time-remaining">
+                                <script>
+                                TargetDate = "08/26/2017 9:00 AM";
+                                DisplayFormat = "Ends in %%D%% days, %%H%% hours, %%M%% mins, %%S%% secs";
+                                FinishMessage = "It is finally here!";
+                                BackColor = "default";
+                                ForeColor = "default";
+                                </script>
+                                <script src="https://scripts.hashemian.com/js/countdown.js"></script>
+                            </div>
+
+                            <div class="container-fluid ico-counters">
+                                <div class="row m-space">
+                                    <div class="col-md-4 col-xs-6">
+                                        <img src="img/eth-logo.png">
+                                        <h2>15 ETH</h2>
+                                        <p>contributed</p>
+                                    </div>
+                                    <div class="col-md-4 col-xs-6">
+                                        <i class="ion-social-usd-outline"></i>
+                                        <h2>$3,000</h2>
+                                        <p>raised so far</p>
+                                    </div>
+                                    <div class="col-md-4 col-xs-6">
+                                        <i class="ion-ios-color-wand-outline"></i>
+                                        <h2>+25%</h2>
+                                        <p>bonus tokens</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 25px;">
+                                <a href="#" class="btn start-project color-fix"><span><i class="ion-ios-checkmark-outline"></i> &nbsp; Contribute now</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- <header id="neutral" class="dark1" style="background-image:url(img/vc-meeting.jpg);" data-overlay="8">
             <div class="header-in">
                 <div class="caption">
-                    <h1>The Internet’s Own VC Fund</h1>
-                    <h6>Now you can get VC-grade Returns On Your ETH</h6>
-                    <a href="whitepaper.pdf" class="btn"><span><i class="ion-document"></i> &nbsp; Read the White paper</span></a>
-                    <a href="#" class="btn start-project"><span><i class="ion-android-notifications-none"></i> &nbsp; Set Tokensale reminder</span></a>
+                    
                 </div>
-                <img class="arrow" src="img/arrow.svg" alt="">
             </div>
-        </header>
+        </header> -->
 
         <!-- Features -->
         <section>
@@ -495,7 +541,7 @@
                         <p>17/F, 12 Marina Boulevard, Singapore, 018982
                         </p>
                         <p>(+65) 3159 2868</p>
-                        <a href="https://join.slack.com/t/unitfund/shared_invite/MjEzMzk0NDQwODIwLTE1MDAxMjAzOTQtZWQ2MWYwMmIxYQ" class="btn"><span>Reach us on <i class="fa fa-slack"></i></span></a>
+                        <a href="https://join.slack.com/t/unitfund/shared_invite/MjEzMzk0NDQwODIwLTE1MDAxMjAzOTQtZWQ2MWYwMmIxYQ" class="btn"><span>Reach us <i class="fa fa-slack"></i></span></a>
                     </div>
                 </div>
             </div>
@@ -611,12 +657,12 @@
         }
         </script>
         <style>
-        /* fix 'fa-slack' highlight issue */
         .btn i {
-            color: #fff;
+            position: relative;
+            top: 3px;
         }
         .btn:hover i {
-            color: #418fdf;
+            color: #fff;
         }
         @media (max-width: 767px) {
             .btn i {
@@ -624,7 +670,7 @@
             }
 
         /* center buttons on mobile */
-            header .header-in .btn {
+            .btn {
                 margin: 10px auto; 
             }
 
@@ -643,6 +689,31 @@
             bottom: -25px;
             right: 5px;
             max-height: 50px;
+        }
+        /* tokensale box */
+        .tokensale {
+            background:rgba(0,0,0,.6);
+            border-radius: 5px;
+            padding:20px 10px;
+            text-align: center;
+        }
+        /* ico-counters */
+        .ico-counters i {
+            font-size: 50px;
+        }
+        .ico-counters img {
+            height: 64px;
+            margin: 4px;
+        }
+        .ico-counters p {
+            margin: -10px 0;
+        }
+        /* time remaining */
+        .time-remaining {
+            text-align: center;
+            color: #aaa;
+            margin-top: -10px;
+            margin-bottom: 30px;
         }
         </style>
     <script src="js/main.min.js"></script>
