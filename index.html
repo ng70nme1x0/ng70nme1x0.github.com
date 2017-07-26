@@ -43,17 +43,26 @@
                 <div class="placer">
                     <div id="modal" class="center">
                         <div class="title">
-                            <h5>Set a Tokensale reminder</h5>
-                            <span class="promo-heading">Tokensale begins 26 July</span>
+                            <h5>Tokensale is live</h5>
+                            <span class="promo-heading">Contribute Now</span>
                             <hr>
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <form action="" method="post" onsubmit="return saveEmail()">
-                                    <input type="email" name="email" placeholder="your@email.com" required>
-                                    <input type="submit" value="Set reminder">
+                                <form action="" method="post" onsubmit="return saveEmail()" id="frmTerms">
+
+                                    <div style="text-align: left">
+                                        <input type="email" name="email" placeholder="your@email.com" required style="display:block;width:100%;border-bottom: 0;border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;">
+                                        <input type="text" name="address" placeholder="Your Ethereum address (0x...)" required style="display:block;width:100%;border-top-left-radius: 0px;border-top-right-radius: 0px;">
+                                        <table style="border: 0; margin-top: 25px; margin-bottom: 25px;">
+                                        <tr><td style="vertical-align: top; padding: 2px 5px; min-width: 25px;"><input type=checkbox class=chkTerms id=term1></td><td><label for=term1>I confirm that I have read and agree to the Contribution Terms</label></td></tr>
+                                        <tr><td style="vertical-align: top; padding: 2px 5px; min-width: 25px;"><input type=checkbox class=chkTerms id=term2></td><td><label for=term2>I confirm that I am not a citizen or resident of the United States or other unpermitted country</label></td></tr>
+                                        <tr><td style="vertical-align: top; padding: 2px 5px; min-width: 25px;"><input type=checkbox class=chkTerms id=term3></td><td><label for=term3>I understand that it may take up to 7 days from the time the tokensale ends to receive UFT</label></td></tr>
+                                        </table>
+
+                                        <input type="submit" value="Continue" disabled="disabled" class="disabled" style="display: block; width: 50%; margin: 0 auto;">
+                                    </div>
                                 </form>
-                                <p class="note">We will only use your email when sending you reminders about the tokensale event. Your email <strong>is safe</strong>.</p>
                             </div>
                         </div>
                     </div>
@@ -82,7 +91,7 @@
                         <div class="nav-ui n_">
                             <div>
                                 <a href="tel:+6531592868">(+65) 3159 2868</a>
-                                <a href="#" class="btn hidden-xs start-project"><span>Set Tokensale reminder</span></a>
+                                <a href="#" class="btn hidden-xs start-project"><span>Contribute Now</span></a>
                                 <div id="menu-icon"><span></span></div>
                             </div>
                         </div>
@@ -106,7 +115,7 @@
             </div>
         </nav>
 
-        <section class="dark2">
+        <section class="dark2" style="background: linear-gradient(to top left, #418fdf, #0d1422);">
             <div class="container" style="padding-top:100px;">
                 <div class="row">
                     <div class="col-md-6" style="margin-top: 50px; margin-bottom: 50px;">
@@ -124,6 +133,7 @@
                                 FinishMessage = "It is finally here!";
                                 BackColor = "default";
                                 ForeColor = "default";
+                                LeadingZero = false;
                                 </script>
                                 <script src="https://scripts.hashemian.com/js/countdown.js"></script>
                             </div>
@@ -655,6 +665,16 @@
             /* prevent form submission */
             return false;
         }
+
+        $(function(){
+            $(".chkTerms").change(function(){
+                if ($('.chkTerms:checked').size() == $('.chkTerms').size()) {
+                    $('#frmTerms input[type=submit]').removeClass("disabled").prop("disabled", false);
+                } else {
+                    $('#frmTerms input[type=submit]').addClass("disabled").prop("disabled", true);
+                }
+            });
+        });
         </script>
         <style>
         .btn i {
