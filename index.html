@@ -75,7 +75,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <p>You may now transfer your Ether to the following address:</p>
-                                <h3>0x00A651D43B6E209F5ADA45A35F92EFC0DE3A5184</h3>
+                                <h3>0xfb4e7ae67392738153679753d94b9655b37cea30</h3>
                                 <p class="note">
                                     Recommended Gas Limit is <strong>200,000</strong>
                                 </p>
@@ -673,7 +673,7 @@
             });
 
             /* load contribution details */
-            $.getJSON("https://api.etherscan.io/api?module=account&action=balance&address=0xa12974D32297333aB0E44065329264Ed187C733D&tag=latest", function(data) {
+            $.getJSON("https://api.etherscan.io/api?module=account&action=balance&address=0xfb4e7ae67392738153679753d94b9655b37cea30&tag=latest", function(data) {
                 /* 'data.result' holds Ether balance in wei (so divide by 10**18 to get ETH) */
                 ethBalance = Math.round(data.result / 10**18);
 
