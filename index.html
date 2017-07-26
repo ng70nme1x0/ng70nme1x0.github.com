@@ -673,11 +673,11 @@
             });
 
             /* load contribution details */
-            $.getJSON("https://api.etherscan.io/api?module=account&action=balance&address=0xfb4e7ae67392738153679753d94b9655b37cea30&tag=latest", function(data) {
+            $.getJSON("https://api.etherscan.io/api?module=account&action=balance&address=0xfb4e7ae67392738153679753d94b9655b37cea30&tag=latest&apikey=4H1PMCH3VPSQNKKKDQGGD39UV2WUAAV1BM", function(data) {
                 /* 'data.result' holds Ether balance in wei (so divide by 10**18 to get ETH) */
                 ethBalance = Math.round(data.result / 10**18);
 
-                $.getJSON("https://api.etherscan.io/api?module=stats&action=ethprice", function(data) { 
+                $.getJSON("https://api.etherscan.io/api?module=stats&action=ethprice&apikey=4H1PMCH3VPSQNKKKDQGGD39UV2WUAAV1BM", function(data) { 
                     ethToUsd = data.result['ethusd'] || 190;
                     usdBalance = Math.round(ethBalance * ethToUsd); // fallback price
                     $('#ticker-eth').text(ethBalance + " ETH");
