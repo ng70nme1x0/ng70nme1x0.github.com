@@ -145,13 +145,13 @@
                                 <div class="row m-space">
                                     <div class="col-md-4 col-xs-6">
                                         <img src="img/eth-logo.png">
-                                        <h2 id="ticker-eth">15 ETH</h2>
-                                        <p>contributed</p>
+                                        <h2 id="ticker-eth">15</h2>
+                                        <p>ETH remaining</p>
                                     </div>
                                     <div class="col-md-4 col-xs-6">
                                         <i class="ion-social-usd-outline"></i>
                                         <h2 id="ticker-usd">$3,000</h2>
-                                        <p>raised so far</p>
+                                        <p>in 1<sup>st</sup> tier</p>
                                     </div>
                                     <div class="col-md-4 col-xs-6">
                                         <i class="ion-ios-color-wand-outline"></i>
@@ -662,6 +662,10 @@
             return false;
         }
 
+        function kFormatter(num) {
+            return num > 999 ? (num/1000).toFixed(1) + 'k' : num
+        }
+
         $(function(){
             /* enable submit when all terms checked */
             $(".chkTerms").change(function(){
@@ -675,13 +679,13 @@
             /* load contribution details */
             $.getJSON("https://api.etherscan.io/api?module=account&action=balance&address=0xfb4e7ae67392738153679753d94b9655b37cea30&tag=latest&apikey=4H1PMCH3VPSQNKKKDQGGD39UV2WUAAV1BM", function(data) {
                 /* 'data.result' holds Ether balance in wei (so divide by 10**18 to get ETH) */
-                ethBalance = Math.round(data.result / 10**18);
+                ethBalance = 2500 - Math.round(data.result / 10**18);
 
                 $.getJSON("https://api.etherscan.io/api?module=stats&action=ethprice&apikey=4H1PMCH3VPSQNKKKDQGGD39UV2WUAAV1BM", function(data) { 
                     ethToUsd = data.result['ethusd'] || 190;
                     usdBalance = Math.round(ethBalance * ethToUsd); // fallback price
-                    $('#ticker-eth').text(ethBalance + " ETH");
-                    $('#ticker-usd').text("$" + usdBalance);
+                    $('#ticker-eth').text(kFormatter(ethBalance));
+                    $('#ticker-usd').text("$" + kFormatter(usdBalance));
                 });
             });
         });
