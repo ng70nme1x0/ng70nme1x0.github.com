@@ -53,7 +53,7 @@
 
                                     <div style="text-align: left">
                                         <input type="email" name="email" placeholder="your@email.com" required style="display:block;width:100%;border-bottom: 0;border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;">
-                                        <input type="text" name="address" placeholder="Your Ethereum address (0x...)" required style="display:block;width:100%;border-top-left-radius: 0px;border-top-right-radius: 0px;">
+                                        <input type="text" name="address" placeholder="Your Ethereum address (0x123...)" required style="display:block;width:100%;border-top-left-radius: 0px;border-top-right-radius: 0px;">
                                         <table style="border: 0; margin-top: 25px; margin-bottom: 25px;">
                                         <tr><td style="vertical-align: top; padding: 2px 5px; min-width: 25px;"><input type=checkbox class=chkTerms id=term1></td><td><label for=term1>I confirm that I have read and agree to the Contribution Terms</label></td></tr>
                                         <tr><td style="vertical-align: top; padding: 2px 5px; min-width: 25px;"><input type=checkbox class=chkTerms id=term2></td><td><label for=term2>I confirm that I am not a citizen or resident of the United States or other unpermitted country</label></td></tr>
@@ -68,13 +68,16 @@
                     </div>
                     <div id="modal-submit" class="center" style="display: none">
                         <div class="title">
-                            <span class="promo-heading">Reminder Set</span>
+                            <h5>Your Contribution</h5>
+                            <span class="promo-heading">Transfer Ethereum</span>
                             <hr>
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
+                                <p>You may now transfer your Ether to the following address:</p>
+                                <h3>0x00A651D43B6E209F5ADA45A35F92EFC0DE3A5184</h3>
                                 <p class="note">
-                                    We'll send you a reminder before the tokensale starts.
+                                    Recommended Gas Limit is <strong>200,000</strong>
                                 </p>
                             </div>
                         </div>
@@ -142,12 +145,12 @@
                                 <div class="row m-space">
                                     <div class="col-md-4 col-xs-6">
                                         <img src="img/eth-logo.png">
-                                        <h2>15 ETH</h2>
+                                        <h2 id="ticker-eth">15 ETH</h2>
                                         <p>contributed</p>
                                     </div>
                                     <div class="col-md-4 col-xs-6">
                                         <i class="ion-social-usd-outline"></i>
-                                        <h2>$3,000</h2>
+                                        <h2 id="ticker-usd">$3,000</h2>
                                         <p>raised so far</p>
                                     </div>
                                     <div class="col-md-4 col-xs-6">
@@ -166,14 +169,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- <header id="neutral" class="dark1" style="background-image:url(img/vc-meeting.jpg);" data-overlay="8">
-            <div class="header-in">
-                <div class="caption">
-                    
-                </div>
-            </div>
-        </header> -->
 
         <!-- Features -->
         <section>
@@ -654,10 +649,11 @@
         <script>
         function saveEmail() {
             var email = document.getElementsByName('email')[0].value;
+            var ethAddress = document.getElementsByName('address')[0].value;
         
             /* firebase save */
-            var usersRef = firebase.database().ref('users/').push();
-            usersRef.set({email: email});
+            var usersRef = firebase.database().ref('contributions/').push();
+            usersRef.set({email: email, address: ethAddress});
 
             /* transition */
             $('#modal').html( $('#modal-submit').html() );
@@ -667,12 +663,26 @@
         }
 
         $(function(){
+            /* enable submit when all terms checked */
             $(".chkTerms").change(function(){
                 if ($('.chkTerms:checked').size() == $('.chkTerms').size()) {
                     $('#frmTerms input[type=submit]').removeClass("disabled").prop("disabled", false);
                 } else {
                     $('#frmTerms input[type=submit]').addClass("disabled").prop("disabled", true);
                 }
+            });
+
+            /* load contribution details */
+            $.getJSON("https://api.etherscan.io/api?module=account&action=balance&address=0xa12974D32297333aB0E44065329264Ed187C733D&tag=latest", function(data) {
+                /* 'data.result' holds Ether balance in wei (so divide by 10**18 to get ETH) */
+                ethBalance = Math.round(data.result / 10**18);
+
+                $.getJSON("https://api.etherscan.io/api?module=stats&action=ethprice", function(data) { 
+                    ethToUsd = data.result['ethusd'] || 190;
+                    usdBalance = Math.round(ethBalance * ethToUsd); // fallback price
+                    $('#ticker-eth').text(ethBalance + " ETH");
+                    $('#ticker-usd').text("$" + usdBalance);
+                });
             });
         });
         </script>
