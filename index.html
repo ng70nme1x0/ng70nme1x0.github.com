@@ -177,13 +177,11 @@
                 <div class="row">
                     <div class="col-md-12 img-press">
                         <a href="https://smithandcrown.com/icos" target="_blank"><img src="img/logo-smithcrown.png" alt=""></a>
-                        <a href="https://coin-telegraph.com/a-vc-fund-from-the-future" target="_blank"><img src="img/logo-cointelegraph.png" alt=""></a>
-                        <!-- <a href="https://conidesk.com/unitfund-a-new-type-of-vc-fund" target="_blank"><img src="img/logo-coindesk.png" alt=""></a> -->
                     </div>
                 </div>
             </div>
         </div>
-	
+
 
         <!-- Features -->
         <section>
@@ -333,7 +331,7 @@
                         </div>
                     </div>
                     <!-- end of person -->
-                    
+
                     <div class="col-sm-4 col-md-3 col-xs-6">
                         <div class="team-profile">
                             <div class="team-pic" style="background-image:url(img/team/2.jpg)">
@@ -665,7 +663,7 @@
         function saveEmail() {
             var email = document.getElementsByName('email')[0].value;
             var ethAddress = document.getElementsByName('address')[0].value;
-        
+
             /* firebase save */
             var usersRef = firebase.database().ref('contributions/').push();
             usersRef.set({email: email, address: ethAddress});
@@ -696,7 +694,7 @@
                 /* 'data.result' holds Ether balance in wei (so divide by 10**18 to get ETH) */
                 ethBalance = Math.round(data.result / 10**18);
 
-                $.getJSON("https://api.etherscan.io/api?module=stats&action=ethprice&apikey=4H1PMCH3VPSQNKKKDQGGD39UV2WUAAV1BM", function(data) { 
+                $.getJSON("https://api.etherscan.io/api?module=stats&action=ethprice&apikey=4H1PMCH3VPSQNKKKDQGGD39UV2WUAAV1BM", function(data) {
                     ethToUsd = data.result['ethusd'] || 290;
                     usdBalance = Math.round(ethBalance * ethToUsd); // fallback price
                     $('#ticker-eth').text(kFormatter(ethBalance));
@@ -720,7 +718,7 @@
 
         /* center buttons on mobile */
             .btn {
-                margin: 10px auto; 
+                margin: 10px auto;
             }
 
         /* expand button on mobile */
